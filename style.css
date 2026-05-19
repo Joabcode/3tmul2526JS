@@ -14,7 +14,7 @@ body {
 }
 
 /* ==========================================================================
-   2. ECRÃ INICIAL / COMPONENTES DE NAVEGAÇÃO (ATUALIZADO)
+   2. ECRÃ INICIAL / COMPONENTES DE NAVEGAÇÃO
    ========================================================================== */
 .home-bg {
     background: linear-gradient(
@@ -22,7 +22,6 @@ body {
         rgba(211, 47, 47, 0.6), 
         rgba(183, 28, 28, 0.8) 
     ), url('assets/images/BK.png');
-    
     background-size: cover;
     background-position: center;
     min-height: 100vh;
@@ -30,7 +29,6 @@ body {
     flex-direction: column;
 }
 
-/* Tornamos o contentor relativo para o menu se guiar por ele */
 .menu-container { 
     padding: 20px; 
     position: relative;
@@ -41,46 +39,32 @@ body {
 .hamburger { 
     font-size: 30px; 
     cursor: pointer; 
-    color: #FFD700; /* Amarelo do poster */
+    color: #FFD700; 
     text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
     transition: transform 0.2s ease, color 0.2s ease;
     display: inline-block;
 }
 
-/* Efeito quando o menu está ativo: o ícone roda ligeiramente e muda o símbolo */
 .menu-container.active .hamburger {
     transform: rotate(90deg);
-    color: #ffea70; /* Um amarelo ligeiramente mais brilhante ao focar */
+    color: #ffea70; 
 }
 
-/* Troca o caractere de ☰ para ✕ de forma limpa no ecrã */
-.menu-container.active .hamburger::before {
-    content: "";
-}
-/* Altera o texto do elemento dinamicamente no clique */
-.menu-container.active .hamburger {
-    font-size: 28px;
-}
-
-/* O Menu flutua por cima do fundo sem quebrar o layout */
 #nav-menu { 
     background: white; 
     padding: 20px; 
     border-radius: 15px;
-    width: 280px; /* Largura fixa ideal para mobile */
+    width: 280px; 
     position: absolute;
-    top: 65px; /* Alinhado perfeitamente abaixo do ícone amarelo */
+    top: 65px; 
     left: 20px;
-    box-shadow: 0px 10px 0px #cccccc; /* Efeito bloco LEGO */
-    
-    /* Estado inicial: Escondido com animação preparada */
+    box-shadow: 0px 10px 0px #cccccc; 
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
 }
 
-/* Quando adicionamos a classe .active via JS, o menu surge suavemente */
 .menu-container.active #nav-menu {
     opacity: 1;
     visibility: visible;
@@ -89,15 +73,13 @@ body {
 
 #nav-menu a { 
     display: block; 
-    color: #006BB6; /* Azul LEGO */
+    color: #006BB6; 
     padding: 12px; 
     text-decoration: none; 
     font-weight: 900; 
     text-transform: uppercase;
-    transition: background 0.2s ease, border-radius 0.2s ease;
 }
 
-/* Feedback visual ao clicar nos links do menu */
 #nav-menu a:active {
     background-color: #f5f5f5;
     border-radius: 8px;
@@ -112,7 +94,7 @@ body {
     text-align: center;
     text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
     color: white;
-    padding-bottom: 60px; /* Compensa o footer e equilibra o logo ao centro */
+    padding-bottom: 60px;
 }
 
 .main-logo { 
@@ -124,7 +106,7 @@ body {
 }
 
 /* ==========================================================================
-   3. PÁGINA DA PAP (ESTILOS ATUAIS)
+   3. PÁGINA DA PAP (RESTRUTURADO COM ALINHAMENTO LATERAL E GALERIA)
    ========================================================================== */
 header { 
     text-align: center; 
@@ -146,32 +128,81 @@ header .bio {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    gap: 20px; /* Dá espaço uniforme entre os blocos brancos */
 }
 
 .pap-content {
-    text-align: center;
-    max-width: 600px;
+    text-align: left; /* Alinhamento à esquerda para combinar com as linhas */
+    width: 100%;
+    max-width: 500px; /* Mantém uma largura excelente para visualização mobile */
     background: white;
     padding: 20px;
     border-radius: 20px;
-    margin-top: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.pap-image { 
-    width: 90%; 
-    max-width: 400px; 
-    display: block; 
-    margin: 0 auto 20px auto;
-    border-radius: 15px; 
-    border: 4px solid #f0f0f0;
+/* Alinha a imagem e o título lado a lado */
+.pap-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.pap-image-side { 
+    width: 80px; 
+    height: 80px; 
+    object-fit: cover; /* Garante que a imagem não deforma ao encolher */
+    border-radius: 12px; 
+    border: 2px solid #f0f0f0;
+    flex-shrink: 0; /* Impede que a imagem seja esmagada pelo texto */
+}
+
+.pap-section-title {
+    font-size: 18px;
+    color: #006BB6; /* Azul condizente com o cabeçalho */
+    font-weight: 800;
 }
 
 .pap-text {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.6;
+    color: #555;
+    text-align: justify;
+}
+
+/* --- ESTILOS DA GALERIA --- */
+.gallery-main-title {
+    font-size: 18px;
+    color: #006BB6;
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.pap-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Divide em duas colunas perfeitas */
+    gap: 10px;
+}
+
+.gallery-item {
     width: 100%;
-    word-wrap: break-word;
+    aspect-ratio: 1 / 1; /* Transforma os itens em quadrados perfeitos */
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+.gallery-item img:active {
+    transform: scale(0.95); /* Pequeno efeito visual ao clicar nas imagens */
 }
 
 /* ==========================================================================
@@ -185,7 +216,7 @@ header .bio {
     color: #000;
     text-align: center;
     padding: 15px;
-    margin: 20px auto;
+    margin: 10px auto;
     border-radius: 50px; 
     text-decoration: none;
     font-weight: 900;
