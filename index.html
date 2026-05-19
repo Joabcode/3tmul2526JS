@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>My Creative Hub</title>
- <link rel="stylesheet" href="style.css">
- <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Creative Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body class="home-bg">
- <div class="menu-container">
- <div class="hamburger" onclick="toggleMenu()">☰</div>
- <nav id="nav-menu" class="hidden">
- <a href="pap.html">A PAP</a>
- <a href="https://www.behance.net/joabelsantos" target="_blank">Portfólio</a>
- <a href="mailto:a32174@aecister.pt">Contacto</a>
- </nav>
- </div>
- <main class="hero-content">
- <img src="assets/images/icon-192.png" alt="Logo" class="main-logo">
- <h1>Joabel dos Santos</h1>
- <p>Técnico de Multimédia & Designer</p>
- </main>
- <footer>Powered by Joabel S.</footer>
- <script>
- function toggleMenu() {
- document.getElementById('nav-menu').classList.toggle('hidden');
- }
- </script>
+
+    <div class="menu-container" id="menu-wrapper">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        
+        <nav id="nav-menu">
+            <a href="pap.html">A PAP</a>
+            <a href="https://www.behance.net/joabelsantos" target="_blank">Portfólio</a>
+            <a href="mailto:a32174@aecister.pt">Contacto</a>
+        </nav>
+    </div>
+
+    <main class="hero-content">
+        <img src="assets/images/icon-192.png" alt="Logo" class="main-logo">
+        <h1>Joabel dos Santos</h1>
+        <p>Técnico de Multimédia & Designer</p>
+    </main>
+
+    <footer>Powered by Joabel S.</footer>
+
+    <script>
+    function toggleMenu() {
+        // Agora adicionamos a classe ao wrapper para controlar o hamburguer e o nav juntos
+        document.getElementById('menu-wrapper').classList.toggle('active');
+    }
+    </script>
 </body>
 </html>
