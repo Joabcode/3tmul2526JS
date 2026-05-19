@@ -9,15 +9,14 @@
 
 body { 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    background-color: #f0f0f0; /* Cinza claro estilo LEGO */
+    background-color: #f0f0f0; 
     color: #333; 
 }
 
 /* ==========================================================================
-   2. ECRÃ INICIAL / UTILITÁRIOS (Se usares nesta página)
+   2. ECRÃ INICIAL / COMPONENTES DE NAVEGAÇÃO (ATUALIZADO)
    ========================================================================== */
 .home-bg {
-    /* Gradiente vermelho sobreposto à imagem de fundo */
     background: linear-gradient(
         to bottom, 
         rgba(211, 47, 47, 0.6), 
@@ -31,8 +30,12 @@ body {
     flex-direction: column;
 }
 
+/* Tornamos o contentor relativo para o menu se guiar por ele */
 .menu-container { 
     padding: 20px; 
+    position: relative;
+    display: inline-block;
+    z-index: 100;
 }
 
 .hamburger { 
@@ -40,28 +43,64 @@ body {
     cursor: pointer; 
     color: #FFD700; /* Amarelo do poster */
     text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, color 0.2s ease;
+    display: inline-block;
 }
 
-.hidden { 
-    display: none; 
+/* Efeito quando o menu está ativo: o ícone roda ligeiramente e muda o símbolo */
+.menu-container.active .hamburger {
+    transform: rotate(90deg);
+    color: #ffea70; /* Um amarelo ligeiramente mais brilhante ao focar */
 }
 
+/* Troca o caractere de ☰ para ✕ de forma limpa no ecrã */
+.menu-container.active .hamburger::before {
+    content: "";
+}
+/* Altera o texto do elemento dinamicamente no clique */
+.menu-container.active .hamburger {
+    font-size: 28px;
+}
+
+/* O Menu flutua por cima do fundo sem quebrar o layout */
 #nav-menu { 
     background: white; 
     padding: 20px; 
     border-radius: 15px;
-    width: 90%; 
-    margin: 10px auto; 
-    box-shadow: 0px 10px 0px #cccccc; /* Efeito de profundidade bloco LEGO */
+    width: 280px; /* Largura fixa ideal para mobile */
+    position: absolute;
+    top: 65px; /* Alinhado perfeitamente abaixo do ícone amarelo */
+    left: 20px;
+    box-shadow: 0px 10px 0px #cccccc; /* Efeito bloco LEGO */
+    
+    /* Estado inicial: Escondido com animação preparada */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+/* Quando adicionamos a classe .active via JS, o menu surge suavemente */
+.menu-container.active #nav-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 #nav-menu a { 
     display: block; 
-    color: #006BB6; /* Azul do casaco do minifig */
+    color: #006BB6; /* Azul LEGO */
     padding: 12px; 
     text-decoration: none; 
     font-weight: 900; 
     text-transform: uppercase;
+    transition: background 0.2s ease, border-radius 0.2s ease;
+}
+
+/* Feedback visual ao clicar nos links do menu */
+#nav-menu a:active {
+    background-color: #f5f5f5;
+    border-radius: 8px;
 }
 
 .hero-content {
@@ -73,6 +112,7 @@ body {
     text-align: center;
     text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
     color: white;
+    padding-bottom: 60px; /* Compensa o footer e equilibra o logo ao centro */
 }
 
 .main-logo { 
@@ -89,13 +129,13 @@ body {
 header { 
     text-align: center; 
     padding: 30px 20px 10px 20px; 
-    background-color: #006BB6; /* Cabeçalho Azul */
+    background-color: #006BB6; 
     color: white;
     border-bottom: 8px solid #00518a;
 }
 
 header .bio { 
-    color: #FFD700; /* Texto amarelo da Bio */
+    color: #FFD700; 
     font-size: 14px; 
     margin-top: 5px; 
     font-weight: bold;
@@ -141,16 +181,16 @@ header .bio {
     display: block;
     width: 80%;
     max-width: 300px;
-    background: #FFD700; /* Botão Amarelo */
+    background: #FFD700; 
     color: #000;
     text-align: center;
     padding: 15px;
     margin: 20px auto;
-    border-radius: 50px; /* Formato pílula */
+    border-radius: 50px; 
     text-decoration: none;
     font-weight: 900;
     text-transform: uppercase;
-    box-shadow: 0 5px 0 #b39700; /* Profundidade do botão */
+    box-shadow: 0 5px 0 #b39700; 
     transition: transform 0.1s;
 }
 
