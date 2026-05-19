@@ -10,8 +10,7 @@ body {
 /* --- Ecrã Inicial --- */
 .home-bg {
     /* Updated gradient to use the red from the poster */
-    background: linear-gradient(rgba(240, 64, 27, 0.8), rgba(224, 30, 37, 0.9)),
-    url('assets/images/BK.png');
+    background: url('assets/images/BK.png');
     background-size: cover;
     background-position: center;
     min-height: 100vh;
